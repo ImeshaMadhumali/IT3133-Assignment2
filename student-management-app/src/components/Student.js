@@ -29,6 +29,12 @@ export default function Student() {
     setStudent((prev) => ({ ...prev, [name]: value }));
   };
 
+  const getGPAColor = (gpa) => {
+    if (gpa >= 3.7) return "green"; // First Class
+    if (gpa >= 3.0) return "blue";  // Second Upper
+    return "orange";                // Second Lower
+  };
+
   return (
     <div>
     <form>
@@ -64,10 +70,13 @@ export default function Student() {
     <button onClick={addStudent}>Add Student</button>
 
     <ul>
-      {students.map((s, index) => (
-        <li key={index}>{s.name}</li>
-      ))}
-    </ul>
+        {students.map((s, index) => (
+          <li key={index}>
+            {s.name} - {s.regno} - {s.course} -{" "}
+            <span style={{ color: getGPAColor(s.gpa) }}>{s.gpa}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

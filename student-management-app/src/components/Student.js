@@ -35,6 +35,10 @@ export default function Student() {
     return "orange";                // Second Lower
   };
 
+  const deleteStudent = (regno) => {
+    setStudents((prev) => prev.filter((s) => s.regno !== regno));
+  };
+
   return (
     <div>
     <form>
@@ -74,6 +78,7 @@ export default function Student() {
           <li key={index}>
             {s.name} - {s.regno} - {s.course} -{" "}
             <span style={{ color: getGPAColor(s.gpa) }}>{s.gpa}</span>
+            <button onClick={() => deleteStudent(s.regno)}>Delete</button>
           </li>
         ))}
       </ul>

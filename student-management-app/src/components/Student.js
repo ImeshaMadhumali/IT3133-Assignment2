@@ -39,6 +39,14 @@ export default function Student() {
     setStudents((prev) => prev.filter((s) => s.regno !== regno));
   };
 
+  const totalStudents = students.length;
+  const averageGPA =
+    totalStudents === 0
+      ? 0
+      : (
+          students.reduce((sum, s) => sum + parseFloat(s.gpa), 0) / totalStudents
+        ).toFixed(2);
+
   return (
     <div>
     <form>
@@ -82,6 +90,8 @@ export default function Student() {
           </li>
         ))}
       </ul>
+      <p>Total Students: {totalStudents}</p>
+      <p>Average GPA: {averageGPA}</p>
     </div>
   );
 }

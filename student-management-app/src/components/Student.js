@@ -8,12 +8,20 @@ export default function Student() {
     gpa: "0.0",
   });
 
+  const [students, setStudents] = useState([]);
+
+  const addStudent = () => {
+    setStudents((prev) => [...prev, student]);
+    setStudent({ regno: "", name: "", course: "", gpa: "0.0" }); // Clear form
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setStudent((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
+    <div>
     <form>
       <input
         type="text"
@@ -44,5 +52,13 @@ export default function Student() {
         onChange={handleChange}
       />
     </form>
+    <button onClick={addStudent}>Add Student</button>
+
+    <ul>
+      {students.map((s, index) => (
+        <li key={index}>{s.name}</li>
+      ))}
+    </ul>
+    </div>
   );
 }

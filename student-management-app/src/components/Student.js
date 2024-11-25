@@ -11,6 +11,15 @@ export default function Student() {
   const [students, setStudents] = useState([]);
 
   const addStudent = () => {
+    if (!student.regno || !student.name) {
+      alert("Registration number and name are required");
+      return;
+    }
+    if (students.some((s) => s.regno === student.regno)) {
+      alert("Duplicate registration number");
+      return;
+    }
+    
     setStudents((prev) => [...prev, student]);
     setStudent({ regno: "", name: "", course: "", gpa: "0.0" }); // Clear form
   };
